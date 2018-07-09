@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 COURSE_INFO_ROOM_ID_INDEX = 0
 COURSE_INFO_TIMESLOT_INDEX = 1
 COURSE_INFO_DAYS_INDEX = 2
@@ -34,8 +36,21 @@ def calc_num_student_course_conflicts(chromosome, student_courses_dict):
   return num_student_course_conflicts
 
 
-def calc_num_course_time_loc_conflicts(chromosome):
-  pass
+def calc_num_course_room_time_conflicts(chromosome):
+  num_course_room_time_conflicts = 0
+
+  courses_per_timeslot = defaultdict(set)
+
+  for course_id in chromosome:
+    course_info_list = chromosome[course_id]
+
+    for timeslot in course_info_list[COURSE_INFO_TIMESLOT_INDEX]:
+      if course_info_list[COURSE_INFO_ROOM_ID_INDEX] in courses_per_timeslot[timeslot]:
+        num_course_room_time_conflicts += 1
+      else:
+        courses_per_timeslot[timeslot].add(course_id)
+
+  return num_course_room_time_conflicts
 
 
 def calc_total_room_overflow(chromosome, room_information_dict, 
