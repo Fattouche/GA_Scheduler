@@ -8,12 +8,22 @@ sys.path.append(os.path.abspath(".."))
 import chromosome_generator as gen
 import mutate as mutator
 import crossover as crosser
+import xml_parser as parser
 
 
 MAX_TIMESLOT = 27
 
 
 class TestingMutationAndCrossover(unittest.TestCase):
+
+    def test_parser(self):
+        classes = parser.get_classes()
+        students = parser.get_students()
+        for class_id in classes:
+            students_in_class = classes[class_id]
+            for student in students_in_class:
+                self.assertTrue(class_id in students[student])
+
     def test_generation(self):
         gene = gen.generate()
         gene_len = len(gene)

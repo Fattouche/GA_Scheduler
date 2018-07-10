@@ -6,7 +6,7 @@ import xml_parser as parser
 CLASS_TYPES = [1, 1.5, 3]
 WEEKDAYS = ['M', 'T', 'W', 'R', 'F']
 MAX_TIMESLOT = 27
-class_information_list = parser.get_classes()
+class_information_list = parser.get_classmap()
 room_information_list = parser.get_rooms()
 room_ids = list(room_information_list.keys())
 

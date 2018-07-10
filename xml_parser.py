@@ -32,7 +32,10 @@ for room in data[0]:
     rooms[int(room.attrib["id"])] = {
         "capacity": int(room.attrib["capacity"]), "location_x": location_x, "location_y": location_y}
 
+
 def get_classes():
+    return classes
+def get_classmap():
     return class_map
 def get_students():
     return students
