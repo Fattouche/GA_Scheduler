@@ -71,8 +71,20 @@ CHROMOSOME_6 = {
 }
 
 
-class TestFitnessFunction(unittest.TestCase):
+CHROMOSOME_7 = {
+  1: [1, [1, 3], 'MW'],
+  2: [1, [4,6], 'MW'],
+  3: [1, [1, 3], 'TR']
+}
 
+CHROMOSOME_8 = {
+  1: [1, [1, 3], 'MW'],
+  2: [1, [3, 6], 'MW'],
+  3: [1, [1, 3], 'TR']
+}
+
+
+class TestFitnessFunction(unittest.TestCase):
   def test_total_room_overflow_zero(self):
     total_room_overflow = fitness_function.calc_total_room_overflow(
       CHROMOSOME_1, ROOM_INFO_DICT_1, COURSE_STUDENTS_DICT_1
@@ -141,3 +153,16 @@ class TestFitnessFunction(unittest.TestCase):
       )
 
     self.assertEqual(num_empty_seats, 7)
+
+  def test_num_course_room_time_conflicts_zero(self):
+    num_course_room_time_conflicts = fitness_function.calc_num_course_room_time_conflicts(CHROMOSOME_7)
+    self.assertTrue(num_course_room_time_conflicts == 0)
+
+
+  def test_num_course_room_time_conflicts_positive(self):
+    num_course_room_time_conflicts = fitness_function.calc_num_course_room_time_conflicts(CHROMOSOME_8)
+    self.assertTrue(num_course_room_time_conflicts == 2)
+
+
+if __name__ == '__main__':
+    unittest.main()
