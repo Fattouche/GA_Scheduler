@@ -71,23 +71,6 @@ def calc_total_room_overflow(chromosome, room_information_dict,
     return total_room_overflow
 
 
-def is_valid(chromosome, room_information_dict, student_information_dict, course_information_dict):
-    student_conflicts = calc_num_student_course_conflicts(
-        chromosome, student_information_dict)
-    room_conflicts = calc_num_course_room_time_conflicts(chromosome)
-    room_overflow = calc_total_room_overflow(
-        chromosome, room_information_dict, course_information_dict)
-
-    return True if (student_conflicts == 0 and room_conflicts == 0 and room_overflow == 0) else False
-
-
-def is_population_valid(population, room_information_dict, student_information_dict, course_information_dict):
-    for chromosone in population():
-        if not is_valid(chromosone, room_information_dict, student_information_dict, course_information_dict):
-            return False
-    return True
-
-
 def calc_num_unfavoured_timeslots_used(chromosome):
     num_unfavoureds_slots = 0
 
@@ -101,28 +84,44 @@ def calc_num_unfavoured_timeslots_used(chromosome):
     return num_unfavoureds_slots
 
 
-def calc_num_empty_seats_in_course_rooms(chromosome, room_information_dict, course_information_dict):
+def calc_num_empty_seats_in_course_rooms(chromosome, room_information_dict, courses_student_dict):
     num_empty_seats = 0
 
     for class_id in chromosome:
         capacity = room_information_dict[class_id]["capacity"]
-        enrolled = len(course_information_dict[class_id])
+        enrolled = len(courses_student_dict[class_id])
         num_empty_seats += (capacity - enrolled)
 
     return num_empty_seats
 
 
-def calc_fitness(chromosome, room_information_dict, course_information_dict,
+def calc_fitness(chromosome, room_information_dict,
                  courses_student_dict, student_courses_dict):
 
     fitness = \
-        1.0 * \
-        calc_num_student_course_conflicts(chromosome, student_courses_dict)
-        + 1.0 * calc_num_course_room_time_conflicts(chromosome)
+        1.0 * calc_num_student_course_conflicts(chromosome, student_courses_dict) \
+        + 1.0 * calc_num_course_room_time_conflicts(chromosome) \
         + 1.0 * calc_total_room_overflow(chromosome, room_information_dict,
-                                         course_students_dict)
-        + 0.1 * calc_num_unfavoured_timeslots_used(chromosome)
+                                         course_students_dict) \
+        + 0.1 * calc_num_unfavoured_timeslots_used(chromosome) \
         + 0.05 * calc_num_empty_seats_in_course_rooms(chromosome,
-                                                      room_information_dict, course_information_dict)
+                                room_information_dict, courses_student_dict)
 
     return fitness
+
+
+def is_valid(chromosome, room_information_dict, student_courses_dict, courses_student_dict):
+    student_conflicts = calc_num_student_course_conflicts(
+        chromosome, student_courses_dict)
+    room_conflicts = calc_num_course_room_time_conflicts(chromosome)
+    room_overflow = calc_total_room_overflow(
+        chromosome, room_information_dict, courses_student_dict)
+
+    return True if (student_conflicts == 0 and room_conflicts == 0 and room_overflow == 0) else False
+
+
+def is_population_valid(population, room_information_dict, student_courses_dict, courses_student_dict):
+    for chromosone in population():
+        if not is_valid(chromosone, room_information_dict, student_courses_dict, courses_student_dict):
+            return False
+    return True
