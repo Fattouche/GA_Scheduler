@@ -62,8 +62,8 @@ def calc_total_room_overflow(chromosome, room_information_dict,
         course_info_list = chromosome[course]
         room_id = course_info_list[COURSE_INFO_ROOM_ID_INDEX]
 
-        room_capacity = room_information_dict[room_id]
-        num_students_in_course = course_students_dict[course]
+        room_capacity = room_information_dict[room_id]['capacity']
+        num_students_in_course = len(course_students_dict[course])
 
         if (num_students_in_course > room_capacity):
             total_room_overflow += (num_students_in_course - room_capacity)

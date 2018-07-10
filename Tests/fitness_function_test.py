@@ -10,9 +10,9 @@ import fitness_function
 
 
 ROOM_INFO_DICT_1 = {
-  1: {"capacity": "5"},
-  2: {"capacity": "8"},
-  3: {"capacity": "10"}
+  1: {"capacity": 5},
+  2: {"capacity": 8},
+  3: {"capacity": 10}
 }
 
 STUDENT_COURSES_DICT_1 = {
@@ -29,12 +29,10 @@ STUDENT_COURSES_DICT_1 = {
   11: [3, 2]
 }
 
-COURSES_STUDENTS_DICT_1 = defaultdict(set)
+COURSE_STUDENTS_DICT_1 = defaultdict(set)
 for key, value in STUDENT_COURSES_DICT_1.items():
   for course in value:
-    COURSES_STUDENTS_DICT_1[course].add(key)
-
-print("COURSES_STUDENT_DICT_1: {}".format(COURSES_STUDENTS_DICT_1))
+    COURSE_STUDENTS_DICT_1[course].add(key)
 
 CHROMOSOME_1 = {
   1: [1, [4, 6], 'MW'],
@@ -53,14 +51,14 @@ class TestFitnessFunction(unittest.TestCase):
 
   def test_total_room_overflow_positive(self):
     total_room_overflow = fitness_function.calc_total_room_overflow(
-      CHROMOSOME_1, ROOM_INFO_DICT_1, COURSES_STUDENTS_DICT_1
+      CHROMOSOME_1, ROOM_INFO_DICT_1, COURSE_STUDENTS_DICT_1
     )
 
-    assertEquals(total_room_overflow, 2)
+    self.assertEqual(total_room_overflow, 3)
 
   def test_total_room_overflow_zero(self):
     total_room_overflow = fitness_function.calc_total_room_overflow(
-      CHROMOSOME_2, ROOM_INFO_DICT_1, COURSES_STUDENTS_DICT_1
+      CHROMOSOME_2, ROOM_INFO_DICT_1, COURSE_STUDENTS_DICT_1
     )
 
-    assertEquals(total_room_overflow, 0)
+    self.assertEqual(total_room_overflow, 0)
