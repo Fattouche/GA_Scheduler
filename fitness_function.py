@@ -98,11 +98,7 @@ def calc_num_unfavoured_timeslots_used(chromosome):
 def calc_num_empty_seats_in_course_rooms(chromosome, room_information_dict, course_students_dict):
     num_empty_seats = 0
     for class_id in chromosome:
-<<<<<<< HEAD
-        capacity = room_information_dict[class_id]["capacity"]
-=======
         capacity = room_information_dict[chromosome[class_id][0]]["capacity"]
->>>>>>> Refactor
         enrolled = len(course_students_dict[class_id])
         num_empty_seats += (capacity - enrolled)
 
@@ -119,22 +115,14 @@ def calc_fitness(chromosome, room_information_dict,
                                          course_students_dict) \
         + 0.1 * calc_num_unfavoured_timeslots_used(chromosome) \
         + 0.05 * calc_num_empty_seats_in_course_rooms(chromosome,
-<<<<<<< HEAD
-                                room_information_dict, course_students_dict)
-=======
                                                       room_information_dict, course_students_dict)
->>>>>>> Refactor
 
     return fitness
 
 
-<<<<<<< HEAD
-def is_valid(chromosome, room_information_dict, student_courses_dict, course_students_dict):
-=======
 def is_valid(chromosome, room_information_dict, course_students_dict, student_courses_dict):
     if chromosome is None:
         return False
->>>>>>> Refactor
     student_conflicts = calc_num_student_course_conflicts(
         chromosome, student_courses_dict)
     room_conflicts = calc_num_course_room_time_conflicts(chromosome)
