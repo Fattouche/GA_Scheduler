@@ -2,13 +2,16 @@ from random import randint
 import collections
 
 
-def crossover(parent_1, parent_2):
+def crossover(parent_1, parent_2, crossover=-1):
     length1 = len(parent_1)
     length2 = len(parent_2)
     if(length1 != length2):
         raise ValueError(
             'Parents differ in length. Parent_1 length: {0}, Parent_2 length: {1}'.format(length1, length2))
-    for i in range(randint(1, length1), length1+1):
+    crossover_point = randint(1, length1) if crossover==-1 else crossover
+    
+    # (crossover == -1) ? randint(1, length1) : crossover
+    for i in range(crossover_point, length1+1):
         parent_1[i], parent_2[i] = parent_2[i], parent_1[i]
     return parent_1, parent_2
 
