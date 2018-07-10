@@ -47,16 +47,20 @@ def calc_num_student_course_conflicts(chromosome, student_courses_dict):
 def calc_num_course_room_time_conflicts(chromosome):
     num_course_room_time_conflicts = 0
 
-    courses_per_timeslot = defaultdict(set)
+    # Index this dict by (time, day)
+    courses_per_time_and_day = defaultdict(set)
 
     for course_id in chromosome:
         course_info_list = chromosome[course_id]
+        room_id = course_info_list[COURSE_INFO_ROOM_ID_INDEX]
 
-        for timeslot in course_info_list[COURSE_INFO_TIMESLOT_INDEX]:
-            if course_info_list[COURSE_INFO_ROOM_ID_INDEX] in courses_per_timeslot[timeslot]:
-                num_course_room_time_conflicts += 1
-            else:
-                courses_per_timeslot[timeslot].add(course_id)
+        for time in range(course_info_list[COURSE_INFO_TIMESLOT_INDEX][0],
+                          course_info_list[COURSE_INFO_TIMESLOT_INDEX][1] + 1):
+            for day in course_info_list[COURSE_INFO_DAYS_INDEX]:
+                if room_id in courses_per_time_and_day[(time, day)]:
+                    num_course_room_time_conflicts += 1
+                else:
+                    courses_per_time_and_day[(time, day)].add(room_id)
 
     return num_course_room_time_conflicts
 
