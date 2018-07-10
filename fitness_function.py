@@ -70,6 +70,14 @@ def calc_total_room_overflow(chromosome, room_information_dict,
   return total_room_overflow
 
 
+def isValid(chromosome, room_information_dict, student_courses_dict, course_students_dict):
+  student_conflicts = calc_num_student_course_conflicts(chromosome, student_courses_dict)
+  room_conflicts = calc_num_course_room_time_conflicts(chromosome)
+  room_overflow = calc_total_room_overflow(chromosome, room_information_dict, course_students_dict)
+
+  return True if (student_conflicts == 0 and room_conflicts == 0 and room_overflow == 0) else False
+
+
 def calc_num_unfavoured_timeslots_used(chromosome):
   num_unfavoureds_slots = 0
   
