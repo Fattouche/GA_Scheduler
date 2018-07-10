@@ -52,6 +52,12 @@ CHROMOSOME_3 = {
   3: [3, [9, 11], 'WF']
 }
 
+CHROMOSOME_4 = {
+  1: [1, [1, 3], 'MW'],
+  2: [2, [5, 6], 'MTH'],
+  3: [3, [9, 11], 'WF']
+}
+
 
 class TestFitnessFunction(unittest.TestCase):
 
@@ -91,3 +97,19 @@ class TestFitnessFunction(unittest.TestCase):
       )
 
     self.assertEqual(num_student_course_conflicts, 3)
+
+  def test_unfavoured_timeslots_zero(self):
+    num_unfavoured_timeslots = \
+      fitness_function.calc_num_unfavoured_timeslots_used(
+        CHROMOSOME_1
+      )
+
+    self.assertEqual(num_unfavoured_timeslots, 0)
+
+  def test_unfavoured_timeslots_positive(self):
+    num_unfavoured_timeslots = \
+      fitness_function.calc_num_unfavoured_timeslots_used(
+        CHROMOSOME_4
+      )
+
+    self.assertEqual(num_unfavoured_timeslots, 3)

@@ -86,11 +86,11 @@ def calc_num_unfavoured_timeslots_used(chromosome):
     num_unfavoureds_slots = 0
 
     for class_id in chromosome:
-        start_timeslot = chromosome[class_id][COURSE_INFO_TIMESLOT_INDEX][0]
-        end_timeslot = chromosome[class_id][COURSE_INFO_TIMESLOT_INDEX][1]
+        for time in range(chromosome[class_id][COURSE_INFO_TIMESLOT_INDEX][0],
+                  chromosome[class_id][COURSE_INFO_TIMESLOT_INDEX][1] + 1):
 
-        if start_timeslot < PREFERRED_START or end_timeslot > PREFERRED_END:
-            num_unfavoureds_slots += 1
+          if time < PREFERRED_START or time > PREFERRED_END:
+              num_unfavoureds_slots += 1
 
     return num_unfavoureds_slots
 
@@ -129,10 +129,3 @@ def is_valid(chromosome, room_information_dict, student_courses_dict, courses_st
         chromosome, room_information_dict, courses_student_dict)
 
     return True if (student_conflicts == 0 and room_conflicts == 0 and room_overflow == 0) else False
-
-
-def is_population_valid(population, room_information_dict, student_courses_dict, courses_student_dict):
-    for chromosone in population():
-        if not is_valid(chromosone, room_information_dict, student_courses_dict, courses_student_dict):
-            return False
-    return True
