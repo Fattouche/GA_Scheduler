@@ -36,26 +36,38 @@ for key, value in STUDENT_COURSES_DICT_1.items():
 
 CHROMOSOME_1 = {
   1: [2, [4, 6], 'MW'],
-  2: [1, [7, 9], 'TH'],
+  2: [1, [7, 9], 'TR'],
   3: [3, [10, 12], 'WF']
 }
 
 CHROMOSOME_2 = {
   1: [1, [4, 6], 'MW'],
-  2: [2, [4, 6], 'TH'],
+  2: [2, [4, 6], 'TR'],
   3: [3, [4, 6], 'WF']
 }
 
 CHROMOSOME_3 = {
   1: [1, [6, 8], 'MW'],
-  2: [2, [5, 6], 'MTH'],
+  2: [2, [5, 6], 'MTR'],
   3: [3, [9, 11], 'WF']
 }
 
 CHROMOSOME_4 = {
   1: [1, [1, 3], 'MW'],
-  2: [2, [5, 6], 'MTH'],
+  2: [2, [5, 6], 'MTR'],
   3: [3, [9, 11], 'WF']
+}
+
+CHROMOSOME_5 = {
+  1: [2, [4, 6], 'MW'],
+  2: [1, [4, 6], 'MW'],
+  3: [3, [4, 6], 'MW']
+}
+
+CHROMOSOME_6 = {
+  1: [3, [4, 6], 'MW'],
+  2: [2, [4, 6], 'MW'],
+  3: [1, [4, 6], 'MW']
 }
 
 
@@ -113,3 +125,19 @@ class TestFitnessFunction(unittest.TestCase):
       )
 
     self.assertEqual(num_unfavoured_timeslots, 3)
+
+  def test_num_empty_seats_1(self):
+    num_empty_seats = \
+      fitness_function.calc_num_empty_seats_in_course_rooms(
+        CHROMOSOME_5, ROOM_INFO_DICT_1, COURSE_STUDENTS_DICT_1
+      )
+
+    self.assertEqual(num_empty_seats, 7)
+
+  def test_num_empty_seats_2(self):
+    num_empty_seats = \
+      fitness_function.calc_num_empty_seats_in_course_rooms(
+        CHROMOSOME_6, ROOM_INFO_DICT_1, COURSE_STUDENTS_DICT_1
+      )
+
+    self.assertEqual(num_empty_seats, 7)
