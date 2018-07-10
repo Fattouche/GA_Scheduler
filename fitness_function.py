@@ -15,24 +15,31 @@ def calc_num_student_course_conflicts(chromosome, student_courses_dict):
 
         # Get time slots of each course from the chromosome
         course_timeslots = [
-            chromosome[course][COURSE_INFO_TIMESLOT_INDEX] for course in student_courses
+            (chromosome[course][COURSE_INFO_TIMESLOT_INDEX],
+            chromosome[course][COURSE_INFO_DAYS_INDEX])
+            for course in student_courses
         ]
 
         # Sort the courses by start time
         # This is O(1) since number of courses a student can have is O(1)
         course_timeslots.sort(
-            Key=lambda timeslot: timeslot[0]
+            key=lambda timeslot: timeslot[0][0]
         )
 
         for i in range(1, len(course_timeslots)):
-            prev_timeslot = course_timeslots[i-1]
-            curr_timeslot = course_timeslots[i]
+            prev_timeslot = course_timeslots[i-1][0]
+            curr_timeslot = course_timeslots[i][0]
 
             prev_end_time = prev_timeslot[1]
             curr_start_time = curr_timeslot[0]
 
             if (curr_start_time <= prev_end_time):
-                num_student_course_conflicts += 1
+                prev_days = course_timeslots[i-1][1]
+                curr_days = course_timeslots[i][1]
+                
+                # Returns true if both strings contain a common char
+                if (not set(prev_days).isdisjoint(curr_days)):
+                    num_student_course_conflicts += 1
 
     return num_student_course_conflicts
 
