@@ -5,7 +5,7 @@ COURSE_INFO_TIMESLOT_INDEX = 1
 COURSE_INFO_DAYS_INDEX = 2
 PREFERRED_START = 4
 PREFERRED_END = 16
-FITNESS_THRESHOLD = 1
+FITNESS_THRESHOLD = 500
 
 
 def calc_num_student_course_conflicts(chromosome, student_courses_dict):
@@ -91,17 +91,18 @@ def calc_num_unfavoured_timeslots_used(chromosome):
 
             if time < PREFERRED_START or time > PREFERRED_END:
                 num_unfavoureds_slots += 1
-
     return num_unfavoureds_slots
 
 
 def calc_num_empty_seats_in_course_rooms(chromosome, room_information_dict, course_students_dict):
     num_empty_seats = 0
+    if(calc_total_room_overflow(chromosome, room_information_dict,
+                                course_students_dict) > 0):
+        return num_empty_seats
     for class_id in chromosome:
         capacity = room_information_dict[chromosome[class_id][0]]["capacity"]
         enrolled = len(course_students_dict[class_id])
         num_empty_seats += (capacity - enrolled)
-
     return num_empty_seats
 
 
@@ -117,6 +118,8 @@ def calc_fitness(chromosome, room_information_dict,
         + 0.05 * calc_num_empty_seats_in_course_rooms(chromosome,
                                                       room_information_dict, course_students_dict)
 
+    other_fitness = 0.1 * calc_num_unfavoured_timeslots_used(chromosome) + 0.05 * calc_num_empty_seats_in_course_rooms(chromosome,
+                                                                                                                       room_information_dict, course_students_dict)
     return fitness
 
 
