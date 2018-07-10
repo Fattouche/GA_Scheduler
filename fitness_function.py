@@ -94,6 +94,17 @@ def calc_num_empty_seats_in_course_rooms(chromosome, room_information_dict, cour
   return num_empty_seats
 
 
-def calc_fitness(chromosome):
-  pass
+def calc_fitness(chromosome, room_information_dict, course_information_dict,
+  courses_student_dict, student_courses_dict):
+  
+  fitness = \
+    1.0 * calc_num_student_course_conflicts(chromosome, student_courses_dict)
+    + 1.0 * calc_num_course_room_time_conflicts(chromosome)
+    + 1.0 * calc_total_room_overflow(chromosome, room_information_dict, 
+                                      course_students_dict)
+    + 0.1 * calc_num_unfavoured_timeslots_used(chromosome)
+    + 0.05 * calc_num_empty_seats_in_course_rooms(chromosome, 
+                          room_information_dict, course_information_dict)
+
+  return fitness
 
