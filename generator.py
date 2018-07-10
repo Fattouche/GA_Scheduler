@@ -2,16 +2,15 @@ import random
 import math
 import sys
 import os
-import xml_parser as parser
 
 CLASS_TYPES = [1, 1.5, 3]
 WEEKDAYS = ['M', 'T', 'W', 'R', 'F']
 MAX_TIMESLOT = 27
 
 
-def get_chromosome(class_information_list, room_ids):
+def get_chromosome(course_students_dict, room_ids):
     chrom = {}
-    for class_id in class_information_list:
+    for class_id in course_students_dict:
         chrom[class_id] = generate(room_ids)
 
     return chrom
@@ -27,7 +26,7 @@ def generate(room_ids):
     days = "".join(days_list)
 
     start_time = random.randint(0, MAX_TIMESLOT)
-    end_time = start_time + duration
+    end_time = start_time + int(duration/0.5)
     timeslot = [start_time, end_time]
 
     return [room, timeslot, days]

@@ -1,4 +1,5 @@
-import os,sys
+import os
+import sys
 import xml.etree.ElementTree as ET
 
 path = os.path.dirname(os.path.abspath(__file__))
@@ -22,7 +23,7 @@ class_map = {}
 class_num = 1
 for class_id in classes:
     class_map[class_num] = class_id
-    class_num+=1
+    class_num += 1
 
 # Rooms
 rooms = {}
@@ -35,9 +36,15 @@ for room in data[0]:
 
 def get_classes():
     return classes
+
+
 def get_classmap():
     return class_map
+
+
 def get_students():
     return students
+
+
 def get_rooms():
     return rooms

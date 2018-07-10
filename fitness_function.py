@@ -5,6 +5,7 @@ COURSE_INFO_TIMESLOT_INDEX = 1
 COURSE_INFO_DAYS_INDEX = 2
 PREFERRED_START = 4
 PREFERRED_END = 16
+FITNESS_THRESHOLD = 1
 
 
 def calc_num_student_course_conflicts(chromosome, student_courses_dict):
@@ -16,7 +17,7 @@ def calc_num_student_course_conflicts(chromosome, student_courses_dict):
         # Get time slots of each course from the chromosome
         course_timeslots = [
             (chromosome[course][COURSE_INFO_TIMESLOT_INDEX],
-            chromosome[course][COURSE_INFO_DAYS_INDEX])
+             chromosome[course][COURSE_INFO_DAYS_INDEX])
             for course in student_courses
         ]
 
@@ -36,7 +37,7 @@ def calc_num_student_course_conflicts(chromosome, student_courses_dict):
             if (curr_start_time <= prev_end_time):
                 prev_days = course_timeslots[i-1][1]
                 curr_days = course_timeslots[i][1]
-                
+
                 # Returns true if both strings contain a common char
                 if (not set(prev_days).isdisjoint(curr_days)):
                     num_student_course_conflicts += 1
@@ -49,7 +50,6 @@ def calc_num_course_room_time_conflicts(chromosome):
 
     # Index this dict by (time, day)
     courses_per_time_and_day = defaultdict(set)
-
     for course_id in chromosome:
         course_info_list = chromosome[course_id]
         room_id = course_info_list[COURSE_INFO_ROOM_ID_INDEX]
@@ -87,19 +87,22 @@ def calc_num_unfavoured_timeslots_used(chromosome):
 
     for class_id in chromosome:
         for time in range(chromosome[class_id][COURSE_INFO_TIMESLOT_INDEX][0],
-                  chromosome[class_id][COURSE_INFO_TIMESLOT_INDEX][1] + 1):
+                          chromosome[class_id][COURSE_INFO_TIMESLOT_INDEX][1] + 1):
 
-          if time < PREFERRED_START or time > PREFERRED_END:
-              num_unfavoureds_slots += 1
+            if time < PREFERRED_START or time > PREFERRED_END:
+                num_unfavoureds_slots += 1
 
     return num_unfavoureds_slots
 
 
 def calc_num_empty_seats_in_course_rooms(chromosome, room_information_dict, course_students_dict):
     num_empty_seats = 0
-
     for class_id in chromosome:
+<<<<<<< HEAD
         capacity = room_information_dict[class_id]["capacity"]
+=======
+        capacity = room_information_dict[chromosome[class_id][0]]["capacity"]
+>>>>>>> Refactor
         enrolled = len(course_students_dict[class_id])
         num_empty_seats += (capacity - enrolled)
 
@@ -116,12 +119,22 @@ def calc_fitness(chromosome, room_information_dict,
                                          course_students_dict) \
         + 0.1 * calc_num_unfavoured_timeslots_used(chromosome) \
         + 0.05 * calc_num_empty_seats_in_course_rooms(chromosome,
+<<<<<<< HEAD
                                 room_information_dict, course_students_dict)
+=======
+                                                      room_information_dict, course_students_dict)
+>>>>>>> Refactor
 
     return fitness
 
 
+<<<<<<< HEAD
 def is_valid(chromosome, room_information_dict, student_courses_dict, course_students_dict):
+=======
+def is_valid(chromosome, room_information_dict, course_students_dict, student_courses_dict):
+    if chromosome is None:
+        return False
+>>>>>>> Refactor
     student_conflicts = calc_num_student_course_conflicts(
         chromosome, student_courses_dict)
     room_conflicts = calc_num_course_room_time_conflicts(chromosome)
@@ -129,3 +142,16 @@ def is_valid(chromosome, room_information_dict, student_courses_dict, course_stu
         chromosome, room_information_dict, course_students_dict)
 
     return True if (student_conflicts == 0 and room_conflicts == 0 and room_overflow == 0) else False
+
+
+def fittest_chromosome(population, room_information_dict,
+                       course_students_dict, student_courses_dict):
+    min_fitness = FITNESS_THRESHOLD
+    fittest_chromosome = None
+    for chromosome in population:
+        chromosome_fitness = calc_fitness(
+            chromosome, room_information_dict, course_students_dict, student_courses_dict)
+        if chromosome_fitness < min_fitness:
+            fittest_chromosome = chromosome
+            min_fitness = chromosome_fitness
+    return fittest_chromosome
