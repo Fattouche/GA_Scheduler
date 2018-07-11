@@ -17,6 +17,7 @@ def get_chromosome(course_students_dict, room_ids):
 
 
 def generate(room_ids):
+    room_ids = list(room_ids)
     room = random.choice(room_ids)
     duration = random.choice(CLASS_TYPES)
 

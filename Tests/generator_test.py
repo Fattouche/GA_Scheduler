@@ -15,17 +15,18 @@ MAX_TIMESLOT = 27
 
 
 class TestingMutationAndCrossover(unittest.TestCase):
-
+    def setUp(self):
+        self.classes = parser.get_classes()
+        self.students = parser.get_students()
+        self.room_ids = parser.get_rooms()
     def test_parser(self):
-        classes = parser.get_classes()
-        students = parser.get_students()
-        for class_id in classes:
-            students_in_class = classes[class_id]
+        for class_id in self.classes:
+            students_in_class = self.classes[class_id]
             for student in students_in_class:
-                self.assertTrue(class_id in students[student])
+                self.assertTrue(class_id in self.students[student])
 
     def test_generation(self):
-        gene = gen.generate()
+        gene = gen.generate(self.room_ids)
         gene_len = len(gene)
         timeslot_len = len(gene[1])
 
@@ -37,13 +38,13 @@ class TestingMutationAndCrossover(unittest.TestCase):
         self.assertTrue(gene[1][0] < gene[1][1])  # ending after begining
 
     def test_mutation(self):
-        parent = gen.get_chromosome()
+        parent = gen.get_chromosome(self.classes, self.room_ids)
         copy1 = copy.deepcopy(parent)
         num_changed = 0
         runs = 10
 
         for i in range(runs):
-            mutated = mutator.mutate(parent)
+            mutated = mutator.mutate(parent, self.room_ids)
             for class_id in copy1:
                 if copy1[class_id] != mutated[class_id]:
                     num_changed += 1
@@ -54,8 +55,8 @@ class TestingMutationAndCrossover(unittest.TestCase):
         first_part_p1 = True
         second_part_p2 = True
 
-        parent1 = gen.get_chromosome()
-        parent2 = gen.get_chromosome()
+        parent1 = gen.get_chromosome(self.classes, self.room_ids)
+        parent2 = gen.get_chromosome(self.classes, self.room_ids)
         crossover_point = random.randint(1, len(parent1))
 
         copyp1 = copy.deepcopy(parent1)
