@@ -6,8 +6,8 @@ sys.path.append(os.getcwd())
 import generator
 
 
-def mutate(parent, room_ids):
-    classes = sample(parent.keys(), randint(1, len(parent)//100))
+def mutate(parent, room_ids, divisor=100):
+    classes = sample(parent.keys(), randint(1, len(parent)//divisor))
     for i in classes:
         parent[i] = generator.generate(room_ids)
 

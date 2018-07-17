@@ -25,7 +25,7 @@ def generate(room_ids):
     days_list.sort(key=lambda x: WEEKDAYS.index(x))
     days = "".join(days_list)
 
-    start_time = random.randint(0, MAX_TIMESLOT)
+    start_time = random.randint(0, MAX_TIMESLOT-int(duration/0.5))
     end_time = start_time + int(duration/0.5)
     timeslot = [start_time, end_time]
 

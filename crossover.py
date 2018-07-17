@@ -3,14 +3,15 @@ from random import sample
 import collections
 
 
-def crossover(parent_1, parent_2, crossover=-1):
+def crossover(parent_1, parent_2, crossover_keys=None):
     length1 = len(parent_1)
     length2 = len(parent_2)
     if(length1 != length2):
         raise ValueError(
             'Parents differ in length. Parent_1 length: {0}, Parent_2 length: {1}'.format(length1, length2))
-    crossover_point = randint(1, length1) if crossover == -1 else crossover
-    crossover_keys = sample(parent_1.keys(), randint(1, length1))
+    if not crossover_keys:
+        crossover_keys = sample(parent_1.keys(), randint(1, length1))
+
     for key in crossover_keys:
         parent_1[key], parent_2[key] = parent_2[key], parent_1[key]
     return parent_1, parent_2
