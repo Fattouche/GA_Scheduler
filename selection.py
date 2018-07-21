@@ -1,4 +1,5 @@
 import random
+import copy
 
 from fitness_function import FitnessCalculator
 
@@ -18,4 +19,8 @@ def selection(population, fitness_calculator):
     # Want to minimize fitness, so use inverse fitnesses as the weights
     inverse_fitnesses = [1.0 / fitness for fitness in fitnesses]
 
-    return random.choices(population, weights=inverse_fitnesses, k=len(population))
+    selection = random.choices(population, weights=inverse_fitnesses, k=len(population))
+
+    # Need to return deepcopies! Otherwise crossover/mutation will affect all
+    # individuals that were duplicated during selection
+    return [copy.deepcopy(individual) for individual in selection]
