@@ -4,9 +4,11 @@ import unittest
 import copy
 import random
 
-sys.path.append("..")
+# Add parent directory to pathx
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import generator as gen
-import xml_parser as parser
+from helper import *
 
 
 MAX_TIMESLOT = 27
@@ -15,8 +17,9 @@ MAX_TIMESLOT = 27
 class TestingGeneration(unittest.TestCase):
 
     def test_generation(self):
-        room_ids = list(parser.get_rooms())
+        room_ids = ROOM_INFO_DICT_1.keys()
         gene = gen.generate(room_ids)
+
         gene_len = len(gene)
         timeslot_len = len(gene[1])
 
