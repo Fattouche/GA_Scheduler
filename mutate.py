@@ -2,12 +2,13 @@ from random import randint
 from random import sample
 import os
 import sys
-sys.path.append(os.getcwd())
+import math
+
 import generator
 
 
 def mutate(parent, room_ids, divisor=100):
-    classes = sample(parent.keys(), randint(1, len(parent)//divisor))
+    classes = sample(parent.keys(), randint(1, math.ceil(len(parent) / divisor)))
     for i in classes:
         parent[i] = generator.generate(room_ids)
 
