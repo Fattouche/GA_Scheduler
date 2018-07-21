@@ -16,6 +16,6 @@ def mutate(parent, room_ids, divisor=100):
 
 
 def mutate_population(population, room_ids):
-    for chromosone in population:
-        chromosone = mutate(chromosone, room_ids)
+    for chromosome in population:
+        chromosome = mutate(chromosome, room_ids)
     return population

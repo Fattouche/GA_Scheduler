@@ -18,9 +18,10 @@ def crossover(parent_1, parent_2, crossover_keys=None):
 
 
 def population_crossover(population):
-    for i in range(1, len(population)):
-        population[i -
-                   1], population[i] = crossover(population[i-1], population[i])
+    for i in range(1, len(population), 2):
+        population[i-1], population[i] = crossover(
+            population[i-1], population[i])
+
     return population
 
 
