@@ -42,6 +42,8 @@ def preform_genetic_algorithm(input_file, fitness_threshold, round_limit):
 
     rounds = 1
     min_fitness = float('inf')
+
+    
     while rounds <= round_limit or round_limit == 0:
         print("Beginning new selection")
         population = selector.selection(population, fitness_calculator)
@@ -79,9 +81,10 @@ def preform_genetic_algorithm(input_file, fitness_threshold, round_limit):
         if fit_chromosomes:
             print('Num fit chromosomes: {}'.format(len(fit_chromosomes)))
 
-        for chromosome, fitness in fit_chromosomes:
+        for chromosome, fitness, validity in fit_chromosomes:
             min_fitness = min(min_fitness, fitness)
-            if fitness_calculator.is_valid(chromosome):
+            
+            if validity == True:
                 return chromosome, fitness, rounds
 
         rounds += 1

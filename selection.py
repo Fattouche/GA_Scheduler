@@ -8,7 +8,8 @@ from fitness_function import FitnessCalculator
 # with probability proportional to their fitness
 # The number of individuals returned is the same as the population size
 def selection(population, fitness_calculator):
-    fitnesses = [fitness_calculator.calc_fitness(individual) for individual in population]
+    fitnesses = [fitness_calculator.calc_fitness_and_validity(individual)[0] 
+                for individual in population]
 
     min_fitness = min(fitnesses)
 

@@ -135,29 +135,25 @@ class FitnessCalculator:
 
 
 
-    def calc_fitness(self, chromosome):
+    def calc_fitness_and_validity(self, chromosome):
         num_course_room_time_conflicts, total_room_overflow, \
         num_unfavoureds_slots, num_empty_seats = \
             self.iterate_over_chromosome(chromosome)
 
+        num_student_course_conflicts = self.calc_num_student_course_conflicts(chromosome)
+
         fitness = \
-            1.0 * self.calc_num_student_course_conflicts(chromosome) \
+            1.0 * num_student_course_conflicts \
             + 1.0 * num_course_room_time_conflicts \
             + 1.0 * total_room_overflow \
             + 0.1 * num_unfavoureds_slots \
             + 0.05 * num_empty_seats
 
-        return fitness
+        validity = True if (num_student_course_conflicts == 0 and \
+                            num_course_room_time_conflicts == 0 and \
+                            total_room_overflow == 0) else False
 
-
-    def is_valid(self, chromosome):
-        if chromosome is None:
-            return False
-        student_conflicts = self.calc_num_student_course_conflicts(chromosome)
-
-        room_conflicts, room_overflow, _, _ = self.iterate_over_chromosome(chromosome)
-
-        return True if (student_conflicts == 0 and room_conflicts == 0 and room_overflow == 0) else False
+        return (fitness, validity)
 
 
     def get_fit_chromosomes(self, population):
@@ -165,11 +161,14 @@ class FitnessCalculator:
         min_fitness = float('inf')
 
         for chromosome in population:
-            chromosome_fitness = self.calc_fitness(chromosome)
-            if chromosome_fitness <= self.fitness_threshold:
-                fit_chromosomes.append((chromosome, chromosome_fitness))
+            chromosome_fitness_and_validity = self.calc_fitness_and_validity(chromosome)
+            fitness = chromosome_fitness_and_validity[0]
+            validity = chromosome_fitness_and_validity[1]
+            
+            if fitness <= self.fitness_threshold:
+                fit_chromosomes.append((chromosome, fitness, validity))
            
-            min_fitness = min(min_fitness, chromosome_fitness)
+            min_fitness = min(min_fitness, fitness)
 
         print('Min fitness: {}'.format(min_fitness))
 
