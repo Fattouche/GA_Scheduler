@@ -1,0 +1,319 @@
+<?xml version="1.0" ?>
+<timetable>
+ <rooms>
+  <room capacity="100" id="1" location="973,60"/>
+  <room capacity="62" id="2" location="590,773"/>
+  <room capacity="95" id="3" location="729,882"/>
+  <room capacity="92" id="4" location="863,899"/>
+  <room capacity="73" id="5" location="983,529"/>
+  <room capacity="24" id="6" location="473,479"/>
+  <room capacity="49" id="7" location="242,275"/>
+  <room capacity="30" id="8" location="57,294"/>
+  <room capacity="45" id="9" location="480,521"/>
+  <room capacity="95" id="10" location="563,563"/>
+  <room capacity="61" id="11" location="18,531"/>
+  <room capacity="53" id="12" location="11,903"/>
+  <room capacity="54" id="13" location="101,419"/>
+  <room capacity="71" id="14" location="228,842"/>
+  <room capacity="69" id="15" location="936,69"/>
+  <room capacity="30" id="16" location="282,950"/>
+  <room capacity="45" id="17" location="362,276"/>
+  <room capacity="73" id="18" location="727,135"/>
+  <room capacity="67" id="19" location="671,169"/>
+  <room capacity="97" id="20" location="387,729"/>
+  <room capacity="64" id="21" location="584,929"/>
+  <room capacity="88" id="22" location="230,203"/>
+  <room capacity="94" id="23" location="544,347"/>
+  <room capacity="54" id="24" location="325,886"/>
+  <room capacity="82" id="25" location="30,364"/>
+  <room capacity="73" id="26" location="755,131"/>
+  <room capacity="62" id="27" location="166,515"/>
+  <room capacity="73" id="28" location="134,450"/>
+  <room capacity="60" id="29" location="126,199"/>
+  <room capacity="51" id="30" location="236,726"/>
+ </rooms>
+ <courses>
+  <course id="1"/>
+  <course id="2"/>
+  <course id="3"/>
+  <course id="4"/>
+  <course id="5"/>
+  <course id="6"/>
+  <course id="7"/>
+  <course id="8"/>
+  <course id="9"/>
+  <course id="10"/>
+  <course id="11"/>
+  <course id="12"/>
+  <course id="13"/>
+  <course id="14"/>
+  <course id="15"/>
+  <course id="16"/>
+  <course id="17"/>
+  <course id="18"/>
+  <course id="19"/>
+  <course id="20"/>
+ </courses>
+ <students>
+  <student id="1">
+   <class id="1"/>
+   <class id="12"/>
+   <class id="7"/>
+  </student>
+  <student id="2">
+   <class id="3"/>
+   <class id="18"/>
+   <class id="13"/>
+  </student>
+  <student id="3">
+   <class id="6"/>
+   <class id="3"/>
+  </student>
+  <student id="4">
+   <class id="20"/>
+  </student>
+  <student id="5">
+   <class id="2"/>
+   <class id="7"/>
+   <class id="12"/>
+   <class id="17"/>
+   <class id="16"/>
+   <class id="8"/>
+  </student>
+  <student id="6">
+   <class id="1"/>
+   <class id="4"/>
+   <class id="2"/>
+   <class id="17"/>
+   <class id="5"/>
+  </student>
+  <student id="7">
+   <class id="17"/>
+   <class id="3"/>
+   <class id="8"/>
+   <class id="12"/>
+  </student>
+  <student id="8">
+   <class id="4"/>
+   <class id="5"/>
+  </student>
+  <student id="9">
+   <class id="5"/>
+   <class id="18"/>
+   <class id="9"/>
+   <class id="10"/>
+  </student>
+  <student id="10">
+   <class id="8"/>
+   <class id="3"/>
+   <class id="5"/>
+   <class id="13"/>
+   <class id="19"/>
+   <class id="9"/>
+  </student>
+  <student id="11">
+   <class id="17"/>
+   <class id="7"/>
+   <class id="8"/>
+   <class id="20"/>
+  </student>
+  <student id="12">
+   <class id="16"/>
+   <class id="6"/>
+   <class id="18"/>
+  </student>
+  <student id="13">
+   <class id="19"/>
+   <class id="12"/>
+   <class id="16"/>
+  </student>
+  <student id="14">
+   <class id="2"/>
+   <class id="5"/>
+  </student>
+  <student id="15">
+   <class id="2"/>
+   <class id="19"/>
+  </student>
+  <student id="16">
+   <class id="6"/>
+   <class id="18"/>
+   <class id="12"/>
+   <class id="4"/>
+   <class id="20"/>
+  </student>
+  <student id="17">
+   <class id="5"/>
+   <class id="20"/>
+  </student>
+  <student id="18">
+   <class id="2"/>
+   <class id="11"/>
+   <class id="19"/>
+   <class id="5"/>
+   <class id="1"/>
+  </student>
+  <student id="19">
+   <class id="1"/>
+   <class id="16"/>
+   <class id="15"/>
+   <class id="19"/>
+  </student>
+  <student id="20">
+   <class id="4"/>
+   <class id="20"/>
+   <class id="14"/>
+   <class id="7"/>
+   <class id="10"/>
+  </student>
+  <student id="21">
+   <class id="11"/>
+  </student>
+  <student id="22">
+   <class id="2"/>
+   <class id="20"/>
+   <class id="7"/>
+   <class id="18"/>
+   <class id="1"/>
+   <class id="10"/>
+  </student>
+  <student id="23">
+   <class id="20"/>
+   <class id="18"/>
+  </student>
+  <student id="24">
+   <class id="4"/>
+   <class id="8"/>
+  </student>
+  <student id="25">
+   <class id="5"/>
+   <class id="17"/>
+   <class id="13"/>
+   <class id="9"/>
+  </student>
+  <student id="26">
+   <class id="14"/>
+   <class id="16"/>
+   <class id="5"/>
+   <class id="18"/>
+  </student>
+  <student id="27">
+   <class id="2"/>
+  </student>
+  <student id="28">
+   <class id="16"/>
+   <class id="2"/>
+   <class id="17"/>
+   <class id="11"/>
+   <class id="10"/>
+   <class id="4"/>
+  </student>
+  <student id="29">
+   <class id="15"/>
+   <class id="16"/>
+   <class id="5"/>
+   <class id="14"/>
+   <class id="4"/>
+  </student>
+  <student id="30">
+   <class id="9"/>
+  </student>
+  <student id="31">
+   <class id="20"/>
+  </student>
+  <student id="32">
+   <class id="20"/>
+  </student>
+  <student id="33">
+   <class id="8"/>
+  </student>
+  <student id="34">
+   <class id="12"/>
+   <class id="9"/>
+  </student>
+  <student id="35">
+   <class id="15"/>
+  </student>
+  <student id="36">
+   <class id="10"/>
+  </student>
+  <student id="37">
+   <class id="2"/>
+   <class id="18"/>
+   <class id="6"/>
+   <class id="12"/>
+   <class id="19"/>
+  </student>
+  <student id="38">
+   <class id="8"/>
+   <class id="6"/>
+   <class id="4"/>
+   <class id="11"/>
+  </student>
+  <student id="39">
+   <class id="19"/>
+   <class id="3"/>
+   <class id="1"/>
+  </student>
+  <student id="40">
+   <class id="6"/>
+   <class id="3"/>
+   <class id="5"/>
+   <class id="9"/>
+  </student>
+  <student id="41">
+   <class id="4"/>
+   <class id="16"/>
+   <class id="14"/>
+   <class id="20"/>
+  </student>
+  <student id="42">
+   <class id="11"/>
+  </student>
+  <student id="43">
+   <class id="13"/>
+   <class id="19"/>
+   <class id="20"/>
+   <class id="16"/>
+   <class id="12"/>
+   <class id="2"/>
+  </student>
+  <student id="44">
+   <class id="9"/>
+   <class id="14"/>
+   <class id="17"/>
+   <class id="18"/>
+   <class id="12"/>
+  </student>
+  <student id="45">
+   <class id="10"/>
+  </student>
+  <student id="46">
+   <class id="2"/>
+  </student>
+  <student id="47">
+   <class id="3"/>
+   <class id="2"/>
+   <class id="20"/>
+  </student>
+  <student id="48">
+   <class id="19"/>
+   <class id="5"/>
+  </student>
+  <student id="49">
+   <class id="11"/>
+   <class id="10"/>
+   <class id="18"/>
+   <class id="5"/>
+   <class id="17"/>
+   <class id="15"/>
+  </student>
+  <student id="50">
+   <class id="14"/>
+   <class id="6"/>
+   <class id="2"/>
+   <class id="7"/>
+   <class id="10"/>
+  </student>
+ </students>
+</timetable>

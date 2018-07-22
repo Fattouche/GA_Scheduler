@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<timetable>
+ <rooms>
+  <room capacity="20" id="1" location="498,24"/>
+  <room capacity="6" id="2" location="448,671"/>
+  <room capacity="5" id="3" location="189,449"/>
+ </rooms>
+ <courses>
+  <course id="1"/>
+  <course id="2"/>
+  <course id="3"/>
+  <course id="4"/>
+  <course id="5"/>
+ </courses>
+ <students>
+  <student id="1">
+   <class id="3"/>
+  </student>
+  <student id="2">
+   <class id="2"/>
+  </student>
+  <student id="3">
+   <class id="1"/>
+   <class id="5"/>
+   <class id="3"/>
+   <class id="4"/>
+  </student>
+  <student id="4">
+   <class id="1"/>
+   <class id="4"/>
+   <class id="2"/>
+   <class id="5"/>
+   <class id="3"/>
+  </student>
+  <student id="5">
+   <class id="3"/>
+   <class id="4"/>
+   <class id="2"/>
+   <class id="1"/>
+   <class id="5"/>
+  </student>
+  <student id="6">
+   <class id="1"/>
+  </student>
+  <student id="7">
+   <class id="2"/>
+  </student>
+  <student id="8">
+   <class id="1"/>
+   <class id="4"/>
+   <class id="5"/>
+   <class id="2"/>
+   <class id="3"/>
+  </student>
+  <student id="9">
+   <class id="4"/>
+   <class id="1"/>
+   <class id="5"/>
+   <class id="2"/>
+   <class id="3"/>
+  </student>
+  <student id="10">
+   <class id="5"/>
+   <class id="4"/>
+   <class id="2"/>
+  </student>
+  <student id="11">
+   <class id="1"/>
+   <class id="3"/>
+   <class id="4"/>
+  </student>
+  <student id="12">
+   <class id="4"/>
+   <class id="1"/>
+   <class id="3"/>
+   <class id="5"/>
+   <class id="2"/>
+  </student>
+  <student id="13">
+   <class id="3"/>
+   <class id="5"/>
+   <class id="1"/>
+  </student>
+  <student id="14">
+   <class id="1"/>
+   <class id="2"/>
+   <class id="4"/>
+   <class id="3"/>
+   <class id="5"/>
+  </student>
+  <student id="15">
+   <class id="5"/>
+   <class id="1"/>
+  </student>
+  <student id="16">
+   <class id="2"/>
+   <class id="1"/>
+   <class id="3"/>
+   <class id="5"/>
+   <class id="4"/>
+  </student>
+  <student id="17">
+   <class id="3"/>
+   <class id="1"/>
+  </student>
+  <student id="18">
+   <class id="1"/>
+   <class id="5"/>
+  </student>
+  <student id="19">
+   <class id="2"/>
+   <class id="4"/>
+  </student>
+  <student id="20">
+   <class id="2"/>
+   <class id="1"/>
+   <class id="3"/>
+   <class id="4"/>
+  </student>
+ </students>
+</timetable>

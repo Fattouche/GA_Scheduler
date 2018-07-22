@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<timetable>
+ <rooms>
+  <room capacity="5" id="1" location="945,363"/>
+ </rooms>
+ <courses>
+  <course id="1"/>
+ </courses>
+ <students>
+  <student id="1">
+   <class id="1"/>
+  </student>
+ </students>
+</timetable>
