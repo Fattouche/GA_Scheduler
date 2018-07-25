@@ -7,8 +7,8 @@ import math
 import generator
 
 
-def mutate(parent, room_ids, divisor=100):
-    classes = sample(parent.keys(), randint(1, math.ceil(len(parent) / divisor)))
+def mutate(parent, room_ids, divisor=10):
+    classes = sample(parent.keys(), randint(0, math.ceil(len(parent) / divisor)))
     for i in classes:
         parent[i] = generator.generate(room_ids)
 

@@ -6,6 +6,7 @@ import mutate as mutator
 from fitness_function import FitnessCalculator
 import crossover
 from xml_parser import Parser
+from chromosome_parser import parse_chromosome
 
 POPULATION_SIZE = 100
 
@@ -85,7 +86,7 @@ def preform_genetic_algorithm(input_file, fitness_threshold, round_limit):
             min_fitness = min(min_fitness, fitness)
             
             if validity == True:
-                return chromosome, fitness, rounds
+                return chromosome, fitness, rounds, course_students_dict
 
         rounds += 1
 
@@ -98,6 +99,7 @@ if __name__ == "__main__":
         args.round_limit)
     print("Finished calculating")
     if result:
-        print('chromosome: {}'.format(result[0]))
         print('fitness: {}'.format(result[1]))
         print('rounds: {}'.format(result[2]))
+        parse_chromosome(result[0], result[3])
+        # print('chromosome: {}'.format(result[0]))

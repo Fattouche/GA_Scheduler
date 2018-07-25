@@ -1,18 +1,14 @@
 import xml_parser as parser
 import datetime
 
-course_students_dict = parser.get_classes()
-
-def parse_chromosome(chromosome):
+def parse_chromosome(chromosome, course_students_dict):
     print("{:^10} {:^10} {:^10} {:^10} {:^10} {:^10}".format( "Class", "Room", "From", "To", "Days", "Students"))
     for class_id in chromosome:
         students_in_class = course_students_dict[class_id]
         start_and_end_time = get_time_from_timeslot(chromosome[class_id][1])
         days = chromosome[class_id][2]
         room_number = chromosome[class_id][0]
-        print("{:^10} {:^10} {:^10} {:^10} {:^10} {:^10}".format(class_id, room_number, start_and_end_time[0], start_and_end_time[1], days, students_in_class[0]))
-        for i in range(1,len(students_in_class)):
-            print('{:^10} {:^10} {:^10} {:^10} {:^10} {:^10}'.format('','','','','',students_in_class[i]))
+        print("{:^10} {:^10} {:^10} {:^10} {:^10} {}".format(class_id, room_number, start_and_end_time[0], start_and_end_time[1], days, students_in_class))
         print()
 
 
