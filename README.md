@@ -7,4 +7,4 @@ Python3
 ## Usage
 python3 genetic_algorithm.py input.xml fitness_value \[--round_limit MAX_SELECTION_ROUNDS] 
 
-Example: `python3 genetic_algoritm.py data/generated_datasets/test_5.xml 40 --round_limit 500`
+Example: `python3 genetic_algorithm.py data/generated_datasets/test_5.xml 40 --round_limit 500`
