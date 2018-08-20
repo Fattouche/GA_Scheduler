@@ -1,5 +1,10 @@
 # AI_ClassScheduler
-Course Project for ECE470
+This course scheduler takes a data set from purdue university and generates an optimal course schedule based off hard and soft constraints as specified by the fitness function.
+
+The schedule consists of:
+
+Classes and their corresponding rooms/timeslots.
+
 
 ## Requirements
 Python3
